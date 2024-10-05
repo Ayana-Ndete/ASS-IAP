@@ -18,3 +18,6 @@ class User {
     public function getEmail() {
         return $this->email;
     }
+    public function getPassword() {
+        return $this->password;
+    }
