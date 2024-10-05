@@ -37,17 +37,19 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 
     // Insert the data into the database
-$sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
-if (mysqli_query($conn, $sql)) {
-echo " ";
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$username = $_POST['name'];
+$email = $_POST['email'];
+$password = $_POST['password'];
+
+// Insert the data into the database
+$stmt = $conn->prepare('INSERT INTO users (username, email, password) VALUES (:username, :email, :password)');
+$stmt->bindParam(':username', $username);
+$stmt->bindParam(':email', $email);
+$stmt->bindParam(':password', $password);
+$stmt->execute();
 
 $user = new User($username, $email, $password);
-} else {
-    echo "Form data not submitted";
-}
 // Retrieve all users from the database
 $sql = "SELECT * FROM users";
 $result = mysqli_query($conn, $sql);
