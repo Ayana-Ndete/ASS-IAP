@@ -48,4 +48,16 @@ $user = new User($username, $email, $password);
 } else {
     echo "Form data not submitted";
 }
+// Retrieve all users from the database
+$sql = "SELECT * FROM users";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    // Display all users
+    while($row = mysqli_fetch_assoc($result)) {
+        $users[] = new User($row['username'], $row['email'], $row['password']);
+    }
+} else {
+    echo "No users found";
+}
 ?>
