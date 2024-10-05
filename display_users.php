@@ -61,3 +61,40 @@ if (mysqli_num_rows($result) > 0) {
     echo "No users found";
 }
 ?>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Users</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2>Users</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach($users as $user) { ?>
+                    <tr>
+                        <td><?= $user->getName() ?></td>
+                        <td><?= $user->getEmail() ?></td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
