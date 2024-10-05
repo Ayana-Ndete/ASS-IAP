@@ -15,3 +15,6 @@ class User {
     public function getName() {
         return $this->username;
     }
+    public function getEmail() {
+        return $this->email;
+    }
