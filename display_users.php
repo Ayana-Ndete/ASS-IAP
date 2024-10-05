@@ -51,14 +51,14 @@ $stmt->execute();
 
 $user = new User($username, $email, $password);
 // Retrieve all users from the database
-$sql = "SELECT * FROM users";
-$result = mysqli_query($conn, $sql);
+} else {
+    echo "Form data not submitted";
+}
 
-if (mysqli_num_rows($result) > 0) {
-    // Display all users
-    while($row = mysqli_fetch_assoc($result)) {
-        $users[] = new User($row['username'], $row['email'], $row['password']);
-    }
+// Retrieve all users from the database
+    $stmt = $conn->prepare('SELECT * FROM users');
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } else {
     echo "No users found";
 }
